@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive IT Club</title>
+    <style>
+        /* CSS Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.5;
+            background-color: #f4f4f4;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header h1, footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .member {
+            display: inline-block;
+            text-align: center;
+            width: 45%;
+            margin: 10px;
+        }
+
+        .member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea, button {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .badge {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .member {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Homepage Section -->
+    <header>
+        <h1>Welcome to the IT Club</h1>
+        <p>Connecting students through technology and innovation.</p>
+    </header>
+
+    <section id="events">
+        <h2>Upcoming Events</h2>
+        <div id="countdown-timer"></div>
+        <p>Next Event: Web Development Workshop - October 12th</p>
+    </section>
+
+    <section id="calendar">
+        <h2>Event Calendar</h2>
+        <div id="event-calendar"></div>
+    </section>
+
+    <section id="member-highlights">
+        <h2>Featured Members</h2>
+        <div class="member">
+            <img src="images/member1.jpg" alt="Alex Johnson">
+            <p><strong>Alex Johnson</strong> - Lead Developer - Badge: <span class="badge">Event Enthusiast</span></p>
+        </div>
+        <div class="member">
+            <img src="images/member2.jpg" alt="Sophia Lee">
+            <p><strong>Sophia Lee</strong> - Design Specialist - Badge: <span class="badge">Code Connoisseur</span></p>
+        </div>
+    </section>
+
+    <section id="forum">
+        <h2>Interactive Forum</h2>
+        <form id="forum-form">
+            <label for="question">Ask a Question:</label>
+            <input type="text" id="question" placeholder="Enter your question here">
+            <button type="submit">Post</button>
+        </form>
+        <div id="forum-posts"></div>
+    </section>
+
+    <section id="resources">
+        <h2>Resources</h2>
+        <ul>
+            <li><a href="#">HTML & CSS Basics</a></li>
+            <li><a href="#">JavaScript Essentials</a></li>
+            <li><a href="#">Python for Beginners</a></li>
+        </ul>
+    </section>
+
+    <section id="join">
+        <h2>Join Us</h2>
+        <form id="join-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Your name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Your email">
+
+            <label for="interest">Why do you want to join?</label>
+            <textarea id="interest" placeholder="Tell us why you're interested"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 IT Club</p>
+        <a href="#join">Join Us</a> | <a href="#resources">Resources</a> | <a href="#member-highlights">Member Highlights</a>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Countdown Timer
+        function countdownTimer() {
+            const eventDate = new Date("October 12, 2024").getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = eventDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    document.getElementById('countdown-timer').innerText = `Event starts in ${days} days.`;
+                }
+            }, 1000);
+        }
+
+        // Event Calendar
+        function eventCalendar() {
+            document.getElementById('event-calendar').innerHTML = `
+                <p>October 12: Web Development Workshop</p>
+                <p>November 5: Python Programming Hackathon</p>
+            `;
+        }
+
+        // Forum Section
+        document.getElementById('forum-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const question = document.getElementById('question').value;
+            const forumPosts = document.getElementById('forum-posts');
+            forumPosts.innerHTML += `<p>${question}</p>`;
+            document.getElementById('question').value = '';
+        });
+
+        // Join Form
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for expressing interest in joining the IT Club!');
+        });
+
+        // Initialize functions
+        countdownTimer();
+        eventCalendar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+// Countdown Timer
+function countdownTimer() {
+    const eventDate = new Date("October 12, 2024").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            document.getElementById('countdown-timer').innerText = `Event starts in ${days} days.`;
+        }
+    }, 1000);
+}
+
+// Event Calendar
+function eventCalendar() {
+    document.getElementById('event-calendar').innerHTML = `
+        <p>October 12: Web Development Workshop</p>
+        <p>November 5: Python Programming Hackathon</p>
+    `;
+}
+
+// Forum Section
+document.getElementById('forum-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const question = document.getElementById('question').value;
+    const forumPosts = document.getElementById('forum-posts');
+    forumPosts.innerHTML += `<p>${question}</p>`;
+    document.getElementById('question').value = '';
+});
+
+// Join Form
+document.getElementById('join-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for expressing interest in joining the IT Club!');
+});
+
+// Initialize functions
+countdownTimer();
+eventCalendar();
